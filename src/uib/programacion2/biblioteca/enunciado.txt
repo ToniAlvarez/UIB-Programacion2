@@ -1,0 +1,28 @@
+Hay que crear la clase Libro
+
+Campos:
+
+ - Codigo
+ - Titulo
+ - Autor
+ - Editorial
+ - Año publicación
+
+ 2 constructores:
+
+  1 - nuevo libro sin código (Código 0).
+  2 - Constructor con todos los atributos
+
+Métodos:
+
+ - Lectura - Introducir toda la información de un libro a través del teclado
+ - toString() - Conversión a string de la información de un libro.
+ Cada uno de los parámetros deberá ser visualizado en pantalla, uno en cada línea, con su correspondiente titular, seguido del valor (Autor: nombre del autor)
+ - Un método que llamaremos getCodigo que nos de el código de un objeto Libro.
+ - Otro método llamado setCodigo que permita modificar el codigo
+
+En una primera versión vamos a realizar una aplicación que nos permita llevar a término las siguientes funcionalidades a través de un menú:
+
+ - Alta de libro - Permitira la adición en el fichero de libros de un nuevo libro con el código que le corresponda
+ - Consulta de libro - Permitirá consultar la información relativa a un libro al introducir el código correpondiente
+ - Listado de libros - Saldrá un listado de todos los libros obtenidos en el fichero, toda la información.
