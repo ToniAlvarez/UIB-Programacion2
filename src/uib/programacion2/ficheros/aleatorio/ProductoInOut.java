@@ -5,47 +5,47 @@ import java.io.RandomAccessFile;
 
 
 public class ProductoInOut {
-    RandomAccessFile objetoInOut = null;
+    private RandomAccessFile objetoInOut = null;
 
     public ProductoInOut(String nombre) {
         try {
             objetoInOut = new RandomAccessFile(nombre, "rw");
-        } catch (IOException error) {
-            
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public Producto lectura() {
-        Producto var = new Producto();
+        Producto producto = new Producto();
         try {
             if (objetoInOut.getFilePointer() < objetoInOut.length()) {
                 try {
-                    var.setEntero(objetoInOut.readInt());
-                    var.setBooleano(objetoInOut.readBoolean());
-                    return var;
+
+                    leerProducto(producto);
+
+                    return producto;
                 } catch (IOException error) {
                 }
-                return var;
+                return producto;
             } else {
-                return var;
+                return producto;
             }
         } catch (IOException error) {
-            
         }
-        return var;
+        return producto;
     }
-
 
     public Producto lectura(int numProducto) {
-        Producto var = new Producto();
+        Producto producto = new Producto();
 
         try {
             if ((objetoInOut.length()) > ((long) (numProducto - 1) * Producto.DIM)) {
                 try {
                     objetoInOut.seek((long) (numProducto - 1) * Producto.DIM);
-                    var.setEntero(objetoInOut.readInt());
-                    var.setBooleano(objetoInOut.readBoolean());
-                    return var;
+
+                    leerProducto(producto);
+
+                    return producto;
                 } catch (IOException error) {
                 }
             } else {
@@ -55,24 +55,21 @@ public class ProductoInOut {
         } catch (ProductoInexistente error) {
             System.err.println("ATENCIÓN: " + error.getMessage());
         }
-        return var;
+        return producto;
     }
 
-    public void escritura(Producto var) {
-        try {
-            objetoInOut.writeInt(var.getEntero());
-            objetoInOut.writeBoolean(var.getBooleano());
-        } catch (IOException error) {
-        }
-    }
-
-    public void escritura(int numProducto, Producto var) {
+    public void escritura(int numProducto, Producto producto) {
         try {
             if ((objetoInOut.length()) > ((long) (numProducto - 1) * Producto.DIM)) {
                 try {
                     objetoInOut.seek((long) (numProducto - 1) * Producto.DIM);
-                    objetoInOut.writeInt(var.getEntero());
-                    objetoInOut.writeBoolean(var.getBooleano());
+                    objetoInOut.writeInt(producto.getCodigo());
+                    objetoInOut.writeChars(producto.getNombre());
+                    objetoInOut.writeChars(producto.getNif());
+                    objetoInOut.writeChars(producto.getDireccion());
+                    objetoInOut.writeInt(producto.getTelefono());
+
+
                 } catch (IOException error) {
                 }
             } else {
@@ -85,13 +82,40 @@ public class ProductoInOut {
         }
     }
 
-    public void escrituraAdd(Producto var) {
+    public void escrituraAdd(Producto producto) {
         try {
             objetoInOut.seek(objetoInOut.length());
-            objetoInOut.writeInt(var.getEntero());
-            objetoInOut.writeBoolean(var.getBooleano());
+
+            objetoInOut.writeInt(producto.getCodigo());
+            objetoInOut.writeChars(producto.getNombre());
+            objetoInOut.writeChars(producto.getNif());
+            objetoInOut.writeChars(producto.getDireccion());
+            objetoInOut.writeInt(producto.getTelefono());
         } catch (IOException error) {
         }
+    }
+
+    private void leerProducto(Producto producto) throws IOException {
+        //Leer int de Código
+        producto.setCodigo(objetoInOut.readInt());
+
+        //Leer chars del Nombre
+        byte[] bytesNombre = new byte[Producto.DIM_NOMBRE];
+        objetoInOut.read(bytesNombre);
+        producto.setNombre(new String(bytesNombre));
+
+        //Leer chars del NIF
+        byte[] bytesNif = new byte[Producto.DIM_NIF];
+        objetoInOut.read(bytesNif);
+        producto.setNif(new String(bytesNif));
+
+        //Leer chars de la Direccion
+        byte[] bytesDireccion = new byte[Producto.DIM_DIRECCION];
+        objetoInOut.read(bytesDireccion);
+        producto.setDireccion(new String(bytesDireccion));
+
+        //Leer int de Telefono
+        producto.setTelefono(objetoInOut.readInt());
     }
 
     public void cierre() {
