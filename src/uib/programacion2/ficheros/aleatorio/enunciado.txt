@@ -1,0 +1,22 @@
+Clase Producto con los campos:
+
+ - Codigo
+ - Nombre
+ - NIF
+ - Dirección
+ - Telefono
+
+
+Codigo: -9999 para inicializar
+Nombre: 40 caracteres
+NIF: 10 caracteres
+Direccion: 60 caracteres
+Telefono: 9 caracteres
+
+
+Operaciones con productos:
+
+ - Alta
+ - Lectura
+ - Modificacion
+ - Listado

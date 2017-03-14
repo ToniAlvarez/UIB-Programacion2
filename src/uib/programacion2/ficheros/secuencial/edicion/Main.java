@@ -1,8 +1,7 @@
-package uib.programacion2.ficheros.secuencial.basico;
+package uib.programacion2.ficheros.secuencial.edicion;
 
 import java.io.EOFException;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Main {
 
@@ -26,17 +25,18 @@ public class Main {
         System.out.println();
         System.out.println("===== MENU DE LA BIBLIOTECA =====");
         System.out.println("----------------------------------------------");
-        System.out.println("1 - Dar de alta un nuevo Libro");
-        System.out.println("2 - Consultar un libro a partir de su código");
-        System.out.println("3 - Listar los libros de la biblioteca");
+        System.out.println("1 - Dar de alta un libro");
+        System.out.println("2 - Consultar un libro");
+        System.out.println("3 - Modificar un libro");
+        System.out.println("4 - Eliminar un libro");
+        System.out.println("5 - Listar todos los libros");
         System.out.println("----------------------------------------------");
         System.out.println("q - Salir");
         System.out.println();
         System.out.print("Introduzca la acción que desea ejecutar: ");
 
-        opcion = LT.llegirCaracter();
 
-        limpiarConsola();
+        opcion = LT.llegirCaracter();
 
         ejecutarAccion(opcion);
     }
@@ -80,9 +80,8 @@ public class Main {
 
             libroOut.escritura(nuevoLibro);
 
-        } catch (IOException e) {
-            System.out.println("Error leyendo fichero: " + e.toString());
         } catch (Exception e) {
+            System.out.println("Error escribiendo fichero: " + e.toString());
             e.printStackTrace();
         } finally {
             if (libroOut != null) {
@@ -119,14 +118,12 @@ public class Main {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("No se ha encontrado ningún libro con el código " + codigoConsulta);
+            System.out.println("La biblioteca está vacía");
             mostrarMenu();
         } catch (EOFException e) {
             System.out.println("Final del fichero: " + e.toString());
-        } catch (IOException e) {
-            System.out.println("Error leyendo fichero: " + e.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error leyendo fichero: " + e.toString());
         } finally {
             if (libroIn != null) {
                 try {
@@ -158,10 +155,8 @@ public class Main {
             mostrarMenu();
         } catch (EOFException e) {
             System.out.println("Final del fichero: " + e.toString());
-        } catch (IOException e) {
-            System.out.println("Error leyendo fichero: " + e.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error leyendo fichero: " + e.toString());
         } finally {
             if (libroIn != null) {
                 try {
