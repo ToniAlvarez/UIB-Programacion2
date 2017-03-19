@@ -1,0 +1,33 @@
+Clase Articulo:
+
+ - DIM = 108
+ - DIM_DESC = 20
+ - DIM_PROV = 30
+
+ - int codigo inicilizado a -9999
+ - String descripcion
+ - String proveedor
+ - int existencias
+
+Constructores a placer
+
+10 ficheros llamados movimientos1 a movimientos10, donde tenemos elementos con la siguiente información:
+
+ - Fecha
+ - Codigo, código de un articulo
+ - Unidades, unidades vendidas de un artículo
+
+ Cada fichero se corresponde a un agente de venta
+ Los ficheros contienen los movimientos de venta que han hecho los agente durante el último mes
+
+ 1 - Fusión de los 10 ficheros en fichero "movimientos mes" enfunción del código,
+        teniendo en cuenta que el contenido de los ficheros está ordenado en orden creciente por el campo código
+
+ 2 - Con el fichero resultante, hacer 'actualización'.
+
+
+Opciones menú:
+
+ 1 - Actualizacion - Actualiza el fichero artículos en lo que conciere a las existencias en función de las ventas recogidas en el fichero de fusión mensual.
+ 2 - Listado - Todos los artículos cuyas existencias estén por debajo de 100
+ 3 - Listado general de artículos
