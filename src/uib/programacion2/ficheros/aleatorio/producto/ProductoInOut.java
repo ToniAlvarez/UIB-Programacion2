@@ -1,4 +1,4 @@
-package uib.programacion2.ficheros.aleatorio;
+package uib.programacion2.ficheros.aleatorio.producto;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -63,12 +63,8 @@ public class ProductoInOut {
             if ((objetoInOut.length()) > ((long) (numProducto - 1) * Producto.DIM)) {
                 try {
                     objetoInOut.seek((long) (numProducto - 1) * Producto.DIM);
-                    objetoInOut.writeInt(producto.getCodigo());
-                    objetoInOut.writeChars(producto.getNombre());
-                    objetoInOut.writeChars(producto.getNif());
-                    objetoInOut.writeChars(producto.getDireccion());
-                    objetoInOut.writeInt(producto.getTelefono());
 
+                    escribirProducto(producto);
 
                 } catch (IOException error) {
                 }
@@ -86,33 +82,46 @@ public class ProductoInOut {
         try {
             objetoInOut.seek(objetoInOut.length());
 
-            objetoInOut.writeInt(producto.getCodigo());
-            objetoInOut.writeChars(producto.getNombre());
-            objetoInOut.writeChars(producto.getNif());
-            objetoInOut.writeChars(producto.getDireccion());
-            objetoInOut.writeInt(producto.getTelefono());
+            escribirProducto(producto);
+
         } catch (IOException error) {
         }
+    }
+
+    private void escribirProducto(Producto producto) throws IOException {
+        objetoInOut.writeInt(producto.getCodigo());
+        objetoInOut.writeChars(producto.getNombre());
+        objetoInOut.writeChars(producto.getNif());
+        objetoInOut.writeChars(producto.getDireccion());
+        objetoInOut.writeInt(producto.getTelefono());
     }
 
     private void leerProducto(Producto producto) throws IOException {
         //Leer int de Código
         producto.setCodigo(objetoInOut.readInt());
 
-        //Leer chars del Nombre
-        byte[] bytesNombre = new byte[Producto.DIM_NOMBRE];
-        objetoInOut.read(bytesNombre);
-        producto.setNombre(new String(bytesNombre));
+        String nombre = "";
 
-        //Leer chars del NIF
-        byte[] bytesNif = new byte[Producto.DIM_NIF];
-        objetoInOut.read(bytesNif);
-        producto.setNif(new String(bytesNif));
+        for (int i = 0; i < Producto.DIM_NOMBRE / 2; i++)
+            nombre += objetoInOut.readChar();
 
-        //Leer chars de la Direccion
-        byte[] bytesDireccion = new byte[Producto.DIM_DIRECCION];
-        objetoInOut.read(bytesDireccion);
-        producto.setDireccion(new String(bytesDireccion));
+        producto.setNombre(nombre);
+
+
+        String nif = "";
+
+        for (int i = 0; i < Producto.DIM_NIF / 2; i++)
+            nif += objetoInOut.readChar();
+
+        producto.setNif(nif);
+
+
+        String direccion = "";
+
+        for (int i = 0; i < Producto.DIM_DIRECCION / 2; i++)
+            direccion += objetoInOut.readChar();
+
+        producto.setDireccion(direccion);
 
         //Leer int de Telefono
         producto.setTelefono(objetoInOut.readInt());

@@ -2,7 +2,7 @@
 FUNCIONALIDAD: entrada de datos por teclado.
 
  */
-package uib.programacion2.ficheros.aleatorio;
+package uib.programacion2.ficheros.aleatorio.producto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

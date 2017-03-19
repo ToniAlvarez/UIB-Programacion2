@@ -1,4 +1,4 @@
-package uib.programacion2.ficheros.aleatorio;
+package uib.programacion2.ficheros.aleatorio.producto;
 
 
 public class Producto {

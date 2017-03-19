@@ -2,7 +2,7 @@
 EXEPCIÓN NO PREDEFINIDA
  */
 
-package uib.programacion2.ficheros.aleatorio;
+package uib.programacion2.ficheros.aleatorio.producto;
 
 
 public class ProductoInexistente extends Exception {
