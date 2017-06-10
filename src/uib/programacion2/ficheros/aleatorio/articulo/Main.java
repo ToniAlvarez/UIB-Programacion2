@@ -1,9 +1,9 @@
-package uib.programacion2.ficheros.aleatorio.producto;
+package uib.programacion2.ficheros.aleatorio.articulo;
 
 public class Main {
 
     public static void main(String[] argumentos) {
-        String nombre = "productos.dat";
+        String nombre = "articulos.dat";
 
         boolean fin = false;
 
@@ -13,10 +13,11 @@ public class Main {
             System.out.println();
             System.out.println("===== MENU =====");
             System.out.println("----------------------------------------------");
-            System.out.println("1 - Escritura de Articulo");
-            System.out.println("2 - Lectura de Articulo");
-            System.out.println("3 - Modificación de Articulo");
-            System.out.println("4 - Listado de Productos");
+            System.out.println("1 - Generar 10 ficheros de Movimientos");
+            System.out.println("1 - Fusionar ficheros de Movimientos");
+            System.out.println("3 - Actualizar fichero de Articulo");
+            System.out.println("4 - Listar Articulos con bajas existencias");
+            System.out.println("5 - Listar todos los Articulos");
             System.out.println("----------------------------------------------");
             System.out.println("q - Salir");
             System.out.println();
@@ -52,13 +53,13 @@ public class Main {
 
     private static void alta(String nombre) {
         boolean terminar = false;
-        Producto producto = new Producto();
-        ProductoInOut ficheroOut = new ProductoInOut(nombre);
+        Articulo articulo = new Articulo();
+        ArticuloInOut ficheroOut = new ArticuloInOut(nombre);
 
         while (!terminar) {
             System.out.println("[ Alta de Articulo ] ");
-            producto.lectura();
-            ficheroOut.escrituraAdd(producto);
+            articulo.lectura();
+            ficheroOut.escrituraAdd(articulo);
             borrarPantalla();
 
             System.out.print("¿Dar de alta otro Articulo?   (s/n): ");
@@ -67,26 +68,26 @@ public class Main {
             if (res.length() == 0 || res.charAt(0) != 's')
                 terminar = true;
         }
-        
+
         ficheroOut.cierre();
     }
 
     public static void lectura(String nombre) {
         boolean terminar = false;
-        ProductoInOut ficheroIn = new ProductoInOut(nombre);
-        int numProducto;
+        ArticuloInOut ficheroIn = new ArticuloInOut(nombre);
+        int numArticulo;
 
-        Producto producto;
+        Articulo articulo;
 
         while (!terminar) {
             borrarPantalla();
             System.out.println("[ Lectura de Articulo ] ");
             System.out.print("Introduzca el Articulo que desea leer: ");
-            numProducto = LT.llegirSencer();
-            producto = ficheroIn.lectura(numProducto);
+            numArticulo = LT.llegirSencer();
+            articulo = ficheroIn.lectura(numArticulo);
 
-            if (!producto.productoVacio()) {
-                System.out.println("Articulo " + numProducto + ": " + producto.toString());
+            if (!articulo.articuloVacio()) {
+                System.out.println("Articulo " + numArticulo + ": " + articulo.toString());
             }
 
             System.out.print("¿Leer otro Articulo?   (s/n): ");
@@ -101,50 +102,45 @@ public class Main {
     private static void modificacion(String nombre) {
 
         boolean terminar = false;
-        ProductoInOut ficheroIn = new ProductoInOut(nombre);
-        int numProducto;
+        ArticuloInOut ficheroIn = new ArticuloInOut(nombre);
+        int numArticulo;
 
         while (!terminar) {
             borrarPantalla();
             System.out.println("[ Modificación de Articulo ] \n");
             System.out.print("Introduce el Articulo que desea modificar: ");
-            numProducto = LT.llegirSencer();
+            numArticulo = LT.llegirSencer();
 
-            Producto producto = ficheroIn.lectura(numProducto);
+            Articulo articulo = ficheroIn.lectura(numArticulo);
 
-            if (!producto.productoVacio()) {
-                System.out.println("Articulo :" + numProducto + ":");
-                System.out.println(producto.toString());
+            if (!articulo.articuloVacio()) {
+                System.out.println("Articulo :" + numArticulo + ":");
+                System.out.println(articulo.toString());
                 System.out.println();
-                
+
                 System.out.print("¿Modificar código de Articulo? (NO -> ENTER): ");
                 Integer nuevoCodigo = LT.llegirSencer();
                 if (nuevoCodigo != null)
-                    producto.setCodigo(nuevoCodigo);
-                
-                System.out.print("¿Modificar nombre de Articulo? (NO -> ENTER): ");
-                String nuevoNombre = LT.llegirLinia();
-                if (nuevoNombre != null && nuevoNombre.length() > 0)
-                    producto.setNombre(nuevoNombre);
-                
-                System.out.print("¿Modificar NIF de Articulo? (NO -> ENTER): ");
-                String nuevoNif = LT.llegirLinia();
-                if (nuevoNombre != null && nuevoNombre.length() > 0)
-                    producto.setNif(nuevoNif);
-                
-                System.out.print("¿Modificar dirección de Articulo? (NO -> ENTER): ");
-                String nuevaDireccion = LT.llegirLinia();
-                if (nuevoNombre != null && nuevoNombre.length() > 0)
-                    producto.setDireccion(nuevaDireccion);
-                
-                System.out.print("¿Modificar teléfono de Articulo? (NO -> ENTER): ");
-                Integer nuevoTelefono = LT.llegirSencer();
-                if (nuevoTelefono != null)
-                    producto.setTelefono(nuevoTelefono);
-                
-                
-                ficheroIn.escritura(numProducto, producto);
-                
+                    articulo.setCodigo(nuevoCodigo);
+
+                System.out.print("¿Modificar descripcion de Articulo? (NO -> ENTER): ");
+                String nuevaDesc = LT.llegirLinia();
+                if (nuevaDesc != null && nuevaDesc.length() > 0)
+                    articulo.setDescripcion(nuevaDesc);
+
+                System.out.print("¿Modificar proveedor de Articulo? (NO -> ENTER): ");
+                String nuevoProv = LT.llegirLinia();
+                if (nuevaDesc != null && nuevaDesc.length() > 0)
+                    articulo.setProveedor(nuevoProv);
+
+                System.out.print("¿Modificar existencias de Articulo? (NO -> ENTER): ");
+                Integer nuevasExist = LT.llegirSencer();
+                if (nuevasExist != null)
+                    articulo.setExistencias(nuevasExist);
+
+
+                ficheroIn.escritura(numArticulo, articulo);
+
             }
 
             System.out.print("¿Desea modificar otro Articulo?   (s/n): ");
@@ -158,14 +154,14 @@ public class Main {
 
     private static void listado(String nombre) {
         borrarPantalla();
-        System.out.println("[ Listando Productos ] \n");
+        System.out.println("[ Listando Articulos ] \n");
 
-        ProductoInOut ficheroIn = new ProductoInOut(nombre);
-        Producto producto = ficheroIn.lectura();
+        ArticuloInOut ficheroIn = new ArticuloInOut(nombre);
+        Articulo articulo = ficheroIn.lectura();
 
-        while (!producto.productoVacio()) {
-            System.out.println(producto.toString());
-            producto = ficheroIn.lectura();
+        while (!articulo.articuloVacio()) {
+            System.out.println(articulo.toString());
+            articulo = ficheroIn.lectura();
         }
 
         System.out.println();

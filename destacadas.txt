@@ -1,0 +1,6 @@
+Jugadas destacadas del equipo DEFENSA:
+
+
+Jugadas destacadas del equipo ATAQUE:
+
+Jugador { nick = 'test1', puntuacion = 46, equipo = ATACANTE, jugada destacada = DEFENSA }

@@ -26,15 +26,15 @@ public class Producto {
     }
 
     public void lectura() {
-        System.out.print("Introduce el código de Producto: ");
+        System.out.print("Introduce el código de Articulo: ");
         setCodigo(LT.llegirSencer());
-        System.out.print("Introduce el nombre de Producto: ");
+        System.out.print("Introduce el nombre de Articulo: ");
         setNombre(LT.llegirLinia());
-        System.out.print("Introduce el NIF de Producto: ");
+        System.out.print("Introduce el NIF de Articulo: ");
         setNif(LT.llegirLinia());
-        System.out.print("Introduce la dirección de Producto: ");
+        System.out.print("Introduce la dirección de Articulo: ");
         setDireccion(LT.llegirLinia());
-        System.out.print("Introduce el teléfono de Producto: ");
+        System.out.print("Introduce el teléfono de Articulo: ");
         setTelefono(LT.llegirSencer());
     }
 
@@ -110,7 +110,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto {" +
+        return "Articulo {" +
                 "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
                 ", nif='" + nif + '\'' +

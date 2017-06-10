@@ -17,7 +17,7 @@ Métodos:
 
  - Lectura - Introducir toda la información de un libro a través del teclado
  - toString() - Conversión a string de la información de un libro.
- Cada uno de los parámetros deberá ser visualizado en pantalla, uno en cada línea, con su correspondiente titular, seguido del valor (Autor: nombre del autor)
+ Cada uno de los parámetros deberá ser visualizado en pantalla, uno en cada línea, con su correspondiente titular, seguido del valor (Autor: descripcion del autor)
  - Un método que llamaremos getCodigo que nos de el código de un objeto Libro.
  - Otro método llamado setCodigo que permita modificar el codigo
 

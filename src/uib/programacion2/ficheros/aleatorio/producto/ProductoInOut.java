@@ -49,7 +49,7 @@ public class ProductoInOut {
                 } catch (IOException error) {
                 }
             } else {
-                throw new ProductoInexistente("Producto INEXISTENTE");
+                throw new ProductoInexistente("Articulo INEXISTENTE");
             }
         } catch (IOException error) {
         } catch (ProductoInexistente error) {
@@ -69,7 +69,7 @@ public class ProductoInOut {
                 } catch (IOException error) {
                 }
             } else {
-                throw new ProductoInexistente("Producto INEXISTENTE");
+                throw new ProductoInexistente("Articulo INEXISTENTE");
             }
 
         } catch (IOException error) {
